@@ -1,0 +1,240 @@
+/* Coindoku: Coin Sudoku Puzzle — legal & support pages, shared stylesheet.
+   Every page is built from the same template: a fresh bamboo-green top band
+   holding the header and hero, a white content column, and a soft green
+   footer band. Inside the game these pages open in a full-screen viewer, where the
+   header and footer are hidden and the game's own Home button takes over. */
+:root{
+  --sky:#3fb86a; --sky-deep:#1e7d45; --gold:#f2b632; --mint:#3fbf7f; --coral:#ff6b6b; --grape:#9b6bd6;
+  --ink:#1d2b22; --ink-soft:#4d5f53; --muted:#7f9386;
+  --hero-top:#c9efc4; --hero-bottom:#ebfae6;     /* the fresh bamboo-green band */
+  --paper:#fbfffa; --card:#ffffff; --line:#d3eecc; --foot:#e7f7e1;
+}
+@font-face{ font-family:'Baloo 2'; src:url('../assets/fonts/baloo-2-latin-500-normal.woff2') format('woff2'); font-weight:400 500; font-style:normal; font-display:swap; }
+@font-face{ font-family:'Baloo 2'; src:url('../assets/fonts/baloo-2-latin-700-normal.woff2') format('woff2'); font-weight:600 700; font-style:normal; font-display:swap; }
+@font-face{ font-family:'Baloo 2'; src:url('../assets/fonts/baloo-2-latin-800-normal.woff2') format('woff2'); font-weight:800 900; font-style:normal; font-display:swap; }
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ height:100%; -webkit-text-size-adjust:100%; }
+html, body{
+  background:var(--paper); color:var(--ink);
+  font-family:'Baloo 2', ui-rounded, 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+}
+body{ min-height:100%; display:flex; flex-direction:column; }
+a{ color:var(--sky-deep); text-underline-offset:2px; }
+a:hover{ color:var(--sky); }
+
+/* One column width for every band, so header, hero, content and footer
+   all line up on the same left edge. */
+.wrap{
+  width:100%; max-width:760px; margin:0 auto;
+  padding-left:calc(env(safe-area-inset-left) + 22px);
+  padding-right:calc(env(safe-area-inset-right) + 22px);
+}
+
+/* ------------------------------------------------------------------ top band */
+.top{
+  background:linear-gradient(180deg, var(--hero-top) 0%, var(--hero-bottom) 100%);
+  border-bottom:1px solid var(--line);
+  position:relative; overflow:hidden;
+}
+/* a couple of soft glows in the band */
+.top::before, .top::after{
+  content:''; position:absolute; border-radius:50%; pointer-events:none; opacity:.55;
+}
+.top::before{ width:180px; height:180px; right:-50px; top:-60px; background:radial-gradient(circle, #a9e3a0 0%, transparent 70%); }
+.top::after{ width:120px; height:120px; left:-40px; bottom:-50px; background:radial-gradient(circle, #ffe7a3 0%, transparent 70%); }
+.top .wrap{ position:relative; z-index:1; padding-top:calc(env(safe-area-inset-top) + 14px); padding-bottom:30px; }
+
+header.site{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:4px 0 18px;
+}
+.brand{ display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--ink); font-weight:900; font-size:19px; }
+.brand-mark{ width:80px; height:80px; border-radius:20px; box-shadow:0 5px 14px rgba(30,125,69,.25); }
+nav.site{ display:flex; flex-wrap:wrap; gap:6px; }
+nav.site a{
+  font-size:12.5px; font-weight:800; text-decoration:none; color:var(--ink-soft);
+  padding:6px 11px; border-radius:999px; background:rgba(255,255,255,.6);
+}
+nav.site a:hover{ color:var(--sky-deep); background:#fff; }
+nav.site a.current{ color:#fff; background:var(--sky-deep); }
+
+.hero{ padding-top:6px; }
+.eyebrow{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:11.5px; font-weight:900; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--sky-deep); background:#fff; padding:5px 12px 5px 8px; border-radius:999px;
+  box-shadow:0 2px 8px rgba(30,125,69,.14); margin-bottom:14px;
+}
+.tile{ width:14px; height:14px; border-radius:50%; background:linear-gradient(135deg,var(--gold),var(--coral)); }
+h1{ font-size:34px; font-weight:900; line-height:1.12; margin:0 0 10px; color:var(--ink); }
+.lede{ font-size:16.5px; line-height:1.6; color:var(--ink-soft); margin:0 0 12px; max-width:620px; }
+.meta{ display:inline-block; font-size:12px; font-weight:700; color:var(--muted); }
+
+/* ------------------------------------------------------------------ content */
+main.content{ flex:1 0 auto; background:var(--card); }
+main.content .wrap{ padding-top:10px; padding-bottom:40px; }
+
+h2{
+  font-size:21px; font-weight:900; line-height:1.25; color:var(--ink);
+  margin:30px 0 10px; padding-left:14px; position:relative;
+}
+/* a small coloured marker beside every section heading */
+h2::before{
+  content:''; position:absolute; left:0; top:.28em; bottom:.28em; width:5px; border-radius:5px;
+  background:linear-gradient(180deg, var(--sky), var(--gold));
+}
+main.content .wrap > h2:first-child{ margin-top:22px; }
+h3{ font-size:16.5px; font-weight:900; color:var(--ink); margin:20px 0 6px; }
+p{ font-size:15.5px; line-height:1.72; color:var(--ink-soft); margin:0 0 12px; }
+ul{ margin:0 0 14px; padding-left:22px; }
+li{ font-size:15.5px; line-height:1.7; color:var(--ink-soft); margin-bottom:6px; }
+li::marker{ color:var(--sky-deep); }
+strong{ color:var(--ink); }
+
+.section-divider{ display:flex; gap:7px; margin:26px 0 4px; }
+.section-divider span{ width:8px; height:8px; border-radius:50%; }
+.section-divider span:nth-child(1){ background:var(--coral); }
+.section-divider span:nth-child(2){ background:var(--gold); }
+.section-divider span:nth-child(3){ background:var(--mint); }
+
+.contact-card{
+  display:flex; gap:14px; align-items:flex-start;
+  background:linear-gradient(180deg, #f0fbec, #fff);
+  border:1px solid var(--line); border-left:5px solid var(--sky-deep);
+  border-radius:16px; padding:16px 18px; margin-top:12px;
+}
+.tile-row{ display:flex; flex-direction:column; gap:5px; padding-top:4px; }
+.tile-row span{ width:10px; height:10px; border-radius:50%; }
+.contact-card p{ margin:0 0 6px; }
+.contact-card p:last-child{ margin-bottom:0; }
+
+/* ------------------------------------------------------------------ FAQ
+   Native <details>/<summary>: tap a question to open it, tap again to
+   close. Needs no script, works inside the game's page viewer, and screen
+   readers announce each one as expandable. */
+.faq-list{ display:flex; flex-direction:column; gap:10px; margin-top:14px; }
+.faq{
+  background:#fff; border:1px solid var(--line); border-radius:16px;
+  box-shadow:0 2px 8px rgba(30,125,69,.07); overflow:hidden;
+  transition:border-color 150ms ease, box-shadow 150ms ease;
+}
+.faq[open]{ border-color:#8fd29a; box-shadow:0 6px 16px rgba(30,125,69,.14); }
+.faq summary{
+  list-style:none; cursor:pointer; position:relative;
+  padding:15px 52px 15px 18px;
+  font-size:16px; font-weight:900; line-height:1.35; color:var(--ink);
+  -webkit-tap-highlight-color:transparent;
+}
+.faq summary::-webkit-details-marker{ display:none; }
+/* plus sign that turns into a minus when open */
+.faq summary::before, .faq summary::after{
+  content:''; position:absolute; right:20px; top:50%; width:14px; height:3px; border-radius:3px;
+  background:var(--sky-deep); transform:translateY(-50%); transition:transform 200ms ease;
+}
+.faq summary::after{ transform:translateY(-50%) rotate(90deg); }
+.faq[open] summary::after{ transform:translateY(-50%) rotate(0deg); }
+.faq[open] summary{ color:var(--sky-deep); }
+.faq-body{ padding:0 18px 14px; animation:faqOpen 200ms ease; }
+.faq-body > :last-child{ margin-bottom:0; }
+@keyframes faqOpen{ from{ opacity:0; transform:translateY(-4px); } to{ opacity:1; transform:none; } }
+@media (prefers-reduced-motion:reduce){ .faq-body{ animation:none; } }
+
+/* ------------------------------------------------------------------ index cards */
+.link-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:14px; margin-top:16px; }
+.link-card{
+  display:block; text-decoration:none; color:var(--ink);
+  background:#fff; border:1px solid var(--line); border-radius:18px; padding:18px 20px;
+  box-shadow:0 3px 10px rgba(30,125,69,.08);
+  transition:border-color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+}
+.link-card:hover{ border-color:var(--sky); transform:translateY(-2px); box-shadow:0 8px 18px rgba(30,125,69,.16); }
+.link-card .dots{ display:flex; gap:5px; margin-bottom:12px; }
+.link-card .dots span{ width:10px; height:10px; border-radius:50%; }
+.link-card h3{ font-size:17.5px; margin:0 0 4px; }
+.link-card p{ margin:0; font-size:14px; line-height:1.55; color:var(--muted); }
+.link-card .go{ display:inline-block; margin-top:10px; font-size:13px; font-weight:900; color:var(--sky-deep); }
+
+.flower-row{ display:flex; gap:9px; margin-bottom:18px; }
+.flower-row span{ width:20px; height:20px; border-radius:50%; animation:flowerBob 2.4s ease-in-out infinite; box-shadow:inset 0 -3px 0 rgba(0,0,0,.12); }
+.flower-row span:nth-child(1){ background:var(--coral);  animation-delay:0s; }
+.flower-row span:nth-child(2){ background:var(--gold);  animation-delay:.15s; }
+.flower-row span:nth-child(3){ background:var(--mint);  animation-delay:.3s; }
+.flower-row span:nth-child(4){ background:var(--sky);   animation-delay:.45s; }
+.flower-row span:nth-child(5){ background:var(--grape); animation-delay:.6s; }
+@keyframes flowerBob{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-6px); } }
+@media (prefers-reduced-motion:reduce){ .flower-row span{ animation:none; } }
+
+/* ------------------------------------------------------------------ footer band */
+footer.site{
+  background:var(--foot); border-top:1px solid var(--line);
+  padding:22px 0 calc(env(safe-area-inset-bottom) + 22px);
+}
+.footer-inner{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+.foot-brand{ display:flex; align-items:center; gap:10px; font-size:12.5px; color:var(--ink-soft); }
+.foot-brand img{ width:30px; height:30px; border-radius:9px; }
+.foot-links{ display:flex; flex-wrap:wrap; gap:6px 16px; }
+.foot-links a{ font-size:12.5px; font-weight:800; text-decoration:none; color:var(--ink-soft); }
+.foot-links a:hover{ color:var(--sky-deep); }
+
+/* ------------------------------------------------------------------ inside the game
+   Header and footer are hidden; the game's Home button sits top-left, so the
+   hero gets extra room above it. */
+.home-fab{
+  display:none; position:fixed; top:calc(env(safe-area-inset-top) + 12px); left:12px; z-index:20;
+  width:72px; height:72px; border:none; padding:0; background:transparent;
+  background-image:url('../assets/ui/icon-home.png'); background-repeat:no-repeat;
+  background-position:center; background-size:contain;
+  cursor:pointer; filter:drop-shadow(0 3px 6px rgba(0,0,0,.3));
+}
+html.embedded .home-fab{ display:block; }
+html.embedded header.site{ display:none; }   /* the footer stays visible inside the game too */
+html.embedded .top .wrap{ padding-top:calc(env(safe-area-inset-top) + 96px); }
+
+/* ------------------------------------------------------------------ phones */
+@media (max-width:560px){
+  .wrap{
+    padding-left:calc(env(safe-area-inset-left) + 16px);
+    padding-right:calc(env(safe-area-inset-right) + 16px);
+  }
+  header.site{ flex-direction:column; align-items:flex-start; }
+  nav.site a{ font-size:11.5px; padding:5px 9px; }
+  h1{ font-size:27px; }
+  .lede{ font-size:15.5px; }
+  h2{ font-size:18.5px; }
+  h3{ font-size:15.5px; }
+  .link-grid{ grid-template-columns:1fr; }
+  .contact-card{ padding:14px; }
+  .faq summary{ font-size:15px; padding:13px 46px 13px 15px; }
+  .faq-body{ padding:0 15px 12px; }
+  .footer-inner{ flex-direction:column; align-items:flex-start; }
+}
+
+/* ===== Bamboo theme: green hero and footer with a bamboo-wood band (site and in-game) ===== */
+:root{ --bamboo-1:#5fae3c; --bamboo-2:#3d8b2c; --bamboo-3:#2f7222; --wood:#d9b56a; --wood-dark:#a87b35; }
+.top{
+  background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,.06) 0 3px, transparent 3px 58px),
+    linear-gradient(180deg, var(--bamboo-1) 0%, var(--bamboo-2) 100%);
+  border-bottom:none;
+  box-shadow:inset 0 -7px 0 var(--wood), inset 0 -9px 0 var(--wood-dark);
+}
+.top::before{ background:radial-gradient(circle, rgba(255,255,255,.35) 0%, transparent 70%); }
+.top::after{ background:radial-gradient(circle, rgba(255,231,163,.55) 0%, transparent 70%); }
+.top .wrap{ padding-bottom:38px; }
+.brand{ color:#fff; text-shadow:0 2px 0 rgba(0,0,0,.18); }
+nav.site a{ color:#fff; background:rgba(255,255,255,.18); }
+nav.site a:hover{ color:var(--bamboo-3); background:#fff; }
+nav.site a.current{ color:#3b2a10; background:var(--wood); box-shadow:inset 0 -2px 0 var(--wood-dark); }
+.top h1{ color:#fff; text-shadow:0 2px 0 rgba(0,0,0,.18); }
+.top .lede{ color:#eefbe6; }
+.top .meta{ color:#e2f3d6; }
+.eyebrow{ color:var(--bamboo-3); }
+footer.site{
+  background:linear-gradient(180deg, var(--bamboo-2) 0%, var(--bamboo-3) 100%);
+  border-top:none; box-shadow:inset 0 7px 0 var(--wood), inset 0 9px 0 var(--wood-dark);
+  padding-top:30px;
+}
+.foot-brand{ color:#f3fbe9; }
+.foot-links a{ color:#fff4dc; }
+.foot-links a:hover{ color:#fff; text-decoration:underline; }
